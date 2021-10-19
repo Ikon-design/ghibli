@@ -45,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 width: 250,
                 image: AssetImage('lib/assets/images/logo_ghibli.png')),
             ElevatedButton(onPressed: () => {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const List()))
+              Navigator.push(context, MaterialPageRoute(builder: (context) => List()))
             }, child: const Text("Decouvrir l'univers")),
           ],
         ),
