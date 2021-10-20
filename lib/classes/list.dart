@@ -13,5 +13,4 @@ Future<List> fetchDatas() async{
 }
 
 class List {
-  List ({final List })
 }

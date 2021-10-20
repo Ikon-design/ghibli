@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ghibli/classes/data.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:ghibli/pages/details.dart';
 
 class List extends StatefulWidget {
   const List({Key? key}) : super(key: key);
@@ -43,6 +44,14 @@ class _ListState extends State<List> {
                   itemBuilder: (context, index) {
                     return Card(
                       child: ListTile(
+                        onTap: () => {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Details(
+                                        data: data[index],
+                                      )))
+                        },
                         title: Text("${data[index]['title']}"),
                         leading: Image(
                           image: NetworkImage("${data[index]['image']}"),
