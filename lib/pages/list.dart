@@ -26,6 +26,7 @@ class _ListState extends State<List> {
 
   Widget build(BuildContext context) {
     var list = fetchData();
+    String id;
     return SafeArea(
         top: false,
         child: Scaffold(
@@ -44,13 +45,15 @@ class _ListState extends State<List> {
                   itemBuilder: (context, index) {
                     return Card(
                       child: ListTile(
-                        onTap: () => {
+                        onTap: () {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Details(
-                                        data: data[index],
-                                      )))
+                                  builder: (context) =>
+                                      Details(data: data[index]),
+                                  settings: RouteSettings(
+                                    arguments: index,
+                                  )));
                         },
                         title: Text("${data[index]['title']}"),
                         leading: Image(
