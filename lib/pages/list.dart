@@ -30,9 +30,7 @@ class _ListState extends State<List> {
     return SafeArea(
         top: false,
         child: Scaffold(
-          appBar: AppBar(
-            title: Text('title'),
-          ),
+          backgroundColor: const Color(0xff242C34),
           body: FutureBuilder(
             future: list,
             builder: (context, snapshot) {
@@ -43,25 +41,60 @@ class _ListState extends State<List> {
                 return ListView.builder(
                   itemCount: numberOfFilms,
                   itemBuilder: (context, index) {
-                    return Card(
-                      child: ListTile(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      Details(data: data[index]),
-                                  settings: RouteSettings(
-                                    arguments: index,
-                                  )));
-                        },
-                        title: Text("${data[index]['title']}"),
-                        leading: Image(
-                          image: NetworkImage("${data[index]['image']}"),
-                          fit: BoxFit.cover,
-                        ),
-                        subtitle: Text("${data[index]['original_title']}"),
-                      ),
+                    return Container(
+                      color: Color(0xff28313B),
+                      padding: EdgeInsets.only(
+                          left: 17, top: 12, bottom: 12, right: 17),
+                      child: Row(children: [
+                        Container(
+                            width: 50,
+                            height: 50,
+                            decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black26,
+                                      spreadRadius: 5, //spread radius
+                                      blurRadius: 5, // blur radius
+                                      offset: Offset(0, 2)),
+                                ],
+                                borderRadius: BorderRadius.circular(6),
+                                image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  alignment: Alignment.bottomCenter,
+                                  image:
+                                      NetworkImage("${data[index]['image']}"),
+                                ))),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "${data[index]['title']}",
+                              style: TextStyle(
+                                  color: Colors.white, fontFamily: 'Open sans', fontSize: 19),
+                            ),
+                            Text(
+                              "${data[index]['director']}",
+                              style: TextStyle(
+                                  color: Colors.white, fontFamily: 'Open sans', fontWeight: FontWeight.w500),
+                            ),
+                          ],
+                        )
+                      ]),
+                      // child: ListTile(
+                      //   onTap: () {
+                      //     Navigator.push(
+                      //         context,
+                      //         MaterialPageRoute(
+                      //             builder: (context) =>
+                      //                 Details(data: data[index]),
+                      //             settings: RouteSettings(
+                      //               arguments: index,
+                      //             )));
+                      //   },
+                      //   title:
+                      //   leading:
+                      //   subtitle:
+                      // ),
                     );
                   },
                 );

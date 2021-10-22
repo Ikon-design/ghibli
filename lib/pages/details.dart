@@ -1,4 +1,5 @@
 import 'dart:convert';
+//import 'dart:html';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,7 @@ class Details extends StatelessWidget {
     var res = jsonEncode(data);
     var json = jsonDecode(res);
     return SafeArea(
-        top: true,
+        top: false,
         child: Scaffold(
           backgroundColor: const Color(0xff242C34),
           body: Column(
@@ -26,14 +27,14 @@ class Details extends StatelessWidget {
                       image: NetworkImage('${json['movie_banner']}')),
                   Container(
                     height: 240,
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                         gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment(0.0, 0.0),
+                            begin: Alignment(0.0, -1.0),
+                            end: Alignment(0.0, 1.0),
                             colors: <Color>[
-                              Color(0x00000000),
-                              Color(0x29010AFF),
-                            ])),
+                          Colors.black.withOpacity(0.1),
+                          Colors.black.withOpacity(0.7),
+                        ])),
                   ),
                   Container(
                       height: 141,
@@ -119,6 +120,22 @@ class Details extends StatelessWidget {
                           ),
                         ],
                       )),
+                  Container(
+                      margin: EdgeInsets.only(top: 30),
+                      child: ElevatedButton.icon(
+                        onPressed: () => Navigator.pop(context),
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.transparent,
+                          elevation: 0.0,
+                          enableFeedback: true,
+                        ),
+
+                        icon: Icon(Icons.chevron_left),
+                        label: Text(
+                          'retour',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      )),
                 ],
               ),
               Container(
@@ -126,7 +143,7 @@ class Details extends StatelessWidget {
                 child: Text(
                   json['description'],
                   style: const TextStyle(
-                      color: Colors.white,
+                    color: Colors.white,
                     fontFamily: 'roboto',
                   ),
                 ),
